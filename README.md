@@ -1,6 +1,6 @@
-# WhisperToTxt
+#  WhisperToTxt
 
-将 MP4 视频转换为文字内容的工具（基于 whisper.cpp），  
+WhisperToTxt 是将 MP4 视频转换为文字内容的工具（基于 whisper.cpp），  
 同时提供视频转码（H.264）功能，用于解决部分设备（如 TV）播放 MP4 有声音无图像的问题。
 
 ---
@@ -21,7 +21,7 @@
 
 下载：
 
-https://huggingface.co/ggerganov/whisper.cpp
+whisper: https://huggingface.co/ggerganov/whisper.cpp/tree/main
 
 推荐模型：
 
@@ -51,19 +51,20 @@ models/
 
 ## 📁 目录结构
 
+```text
 project/
- ├─ transcribe.bat
- ├─ changeCodeH264.bat
- ├─ models/
- │   ├─ ggml-small-q8_0.bin
- │   └─ ggml-large-v3-turbo.bin
- ├─ bin/
- │   ├─ ffmpeg.exe
- │   └─ ffprobe.exe
- ├─ whisper-cli.exe
- ├─ input/
- ├─ output/
-
+├─ transcribe.bat
+├─ changeCodeH264.bat
+├─ models/
+│  ├─ ggml-small-q8_0.bin
+│  └─ ggml-large-v3-turbo.bin
+├─ bin/
+│  ├─ ffmpeg.exe
+│  └─ ffprobe.exe
+├─ whisper-cli.exe
+├─ input/
+└─ output/
+```
 ---
 
 ## 🚀 使用方法
