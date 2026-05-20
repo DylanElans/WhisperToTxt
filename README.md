@@ -9,6 +9,7 @@
 
 - 🎙 视频转文字（支持中文）
 - 📁 支持单文件 / 整个目录（递归）
+- 📂 支持指定输出目录，并保留输入目录的子目录结构
 - ⏱ 可统计音频时长
 - 🧹 文本清洗功能
 - 🎬 MP4 转 H.264 编码（兼容性更好）
@@ -72,7 +73,7 @@ project/
 ├─ ffprobe.exe
 ├─ whisper-cli.exe
 ├─ input/
-└─ output/
+└─ output/            # 默认输出目录
 ```
 ---
 
@@ -92,6 +93,16 @@ transcribe.bat "input\test.mp4"
 transcribe.bat "input\test.mp4" clean notime
 ```
 
+#### 指定输出目录
+
+第 1 个参数为输入文件 / 输入目录，第 2 个参数为输出目录：
+
+```bash
+transcribe.bat "input\test.mp4" "D:\txt_output" notime clean
+```
+
+如果第 2 个参数是 `duration` / `small` / `large` / `notime` / `clean`，则会被识别为功能参数，不会被当作输出目录。
+
 ---
 
 ### 📁 处理整个目录（递归）
@@ -100,12 +111,36 @@ transcribe.bat "input\test.mp4" clean notime
 transcribe.bat "input\"
 ```
 
+#### 递归处理并指定输出目录
+
+```bash
+transcribe.bat "input\" "D:\txt_output" notime clean
+```
+
+处理目录时会保留输入目录下的子目录结构，例如：
+
+```text
+input\A\test.mp4
+```
+
+会输出到：
+
+```text
+D:\txt_output\A\test.txt
+```
+
 ---
 
 ### ⏱ 时长统计模式
 
 ```bash
 transcribe.bat "input\test.mp4" duration
+```
+
+也可以统计整个目录：
+
+```bash
+transcribe.bat "input\" duration
 ```
 
 ---
@@ -120,7 +155,9 @@ transcribe.bat "input\test.mp4" duration
 | duration | 统计时长 |
 | notime | 不生成时间戳文件 |
 | clean | 清洗文本 |
-| 可以指定目标目录
+| 第 2 个参数为目录 | 指定输出目录，目录不存在时会自动创建 |
+
+> 注意：如果不指定输出目录，默认输出到脚本所在目录下的 `output/`。
 
 
 ---
@@ -169,12 +206,25 @@ changeCodeH264.bat "D:\videos\"
 
 输出目录：
 
-output/
+- 默认输出到脚本所在目录下的 `output/`
+- 也可以通过第 2 个参数指定输出目录
 
 生成内容：
 
-- 文本文件 .txt
-- 时间轴文件 _time.txt（可选）
+- 文本文件 `.txt`
+- 时间轴文件 `_timed.txt`（使用 `notime` 参数时不生成）
+
+目录模式下会保留子目录结构：
+
+```text
+input\课程1\a.mp4
+```
+
+输出为：
+
+```text
+output\课程1\a.txt
+```
 
 ---
 
